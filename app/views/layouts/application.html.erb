@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NinetyNineCatsDay1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% unless current_user
+  button_text = "login"
+  method_name = :create
+  text = 'welcome to fat cats'
+else
+  button_text = "logout"
+  method_name = :delete
+  text = current_user.user_name
+end%>
+<h1> <%= text %> </h1>
+<%= yield %>
+
+<%= button_to button_text, session_url, method: method_name %>
+</body>
+</html>
